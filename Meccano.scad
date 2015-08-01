@@ -46,6 +46,7 @@ module MeccanoC(size,hole){
    rotate([0,45,0])
    Meccano(size, hole); 
 }
+
 module Shield(){
     $fn=10;
     difference(){
@@ -59,7 +60,68 @@ module Shield(){
   cube([1000,1000,1000], center=true);
   }
   
+} 
+module PingAttachment(){
+  difference(){
+    union(){  
+        cube([48,22,10],center=true);
+        translate([-30,9.5,0])
+        cube([20,3,10], center=true);
+        translate([30,9.5,0])
+        cube([20,3,10], center=true);
+    }    
+    translate([-13,0,0])  
+    cylinder(h=20, r=8.5, center=true);
+      translate([13,0,0])  
+    cylinder(h=20, r=8.5, center=true);
+    rotate([90,0,0])
+    translate([30,0,-10])  
+    cylinder(h=20, r=1.5, center=true, $fn=50);
+    rotate([90,0,0])
+    translate([35,0,-10])  
+    cylinder(h=20, r=1.5, center=true, $fn=50);
     
-}    
-//MeccanoAngle([30,10,5], 4.5, 40);
-Shield();
+    rotate([90,0,0])
+    translate([-30,0,-10])  
+    cylinder(h=20, r=1.5, center=true, $fn=50);
+    rotate([90,0,0])
+    translate([-35,0,-10])  
+    cylinder(h=20, r=1.5, center=true, $fn=50);
+  }  
+}
+module BatteryPackHolder(){
+    difference(){
+        cube([47,91,29], center=true);
+        translate([0,0,4])
+        cube([44,88,29], center=true);
+        translate([0,0,4])
+        cube([34,98,29], center=true);
+        for(x = [-50:5:50]){
+        for(y = [-40:10:40]){
+        rotate([0,0,0])
+        translate([x,y,0])  
+        cylinder(h=200, r=1.5, center=true, $fn=50);
+        }
+        }
+        
+        for(x = [-20:40:20]){
+        for(y = [-5:5:10]){
+        rotate([90,0,0])
+        translate([x,y,0])  
+        cylinder(h=200, r=1.5, center=true, $fn=50);
+        }
+        }
+        
+        for(x = [-40:10:40]){
+        for(y = [-5:5:10]){
+        rotate([90,0,90])
+        translate([x,y,0])  
+        cylinder(h=50, r=1.5, center=true, $fn=50);
+        }
+        }
+    }
+       
+    
+}
+//PingAttachment();
+BatteryPackHolder();
