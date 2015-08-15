@@ -17,6 +17,19 @@ module MeccanoL(size,hole){
    rotate([0,90,0])
    Meccano(size, hole); 
 }
+//MeccanoMotor([30,10,4], 3);
+module MeccanoMotor(size,hole){
+   Meccano(size, hole);
+   translate([size[0]/2,0,size[0]/2])
+   rotate([0,90,0])
+   difference(){
+    cube([30,size[1],size[2]],center=true);
+    translate([8,0,0])
+    cylinder(r=1.5, h=30, center=true, $fn=50);
+       translate([-10,0,0])
+    cylinder(r=1.5, h=30, center=true, $fn=50);
+   }     
+}
 module MeccanoY(size,hole){
    Meccano(size, hole);
    translate([(size[0]/2)*sin(45)+size[0]/2,0,size[0]/2*cos(45)])
@@ -37,6 +50,7 @@ module MeccanoAngle(size,hole,angle){
    rotate([0,90+angle,0])
    Meccano(size, hole); 
 }
+MeccanoC([30,50,4], 4);
 module MeccanoC(size,hole){
    Meccano(size, hole);
    translate([(size[0]/2)*sin(45)+size[0]/2,0,size[0]/2*cos(45)])
@@ -46,7 +60,7 @@ module MeccanoC(size,hole){
    rotate([0,45,0])
    Meccano(size, hole); 
 }
-
+//Shield();
 module Shield(){
     $fn=10;
     difference(){
@@ -61,6 +75,18 @@ module Shield(){
   }
   
 } 
+//Floater();
+module Floater(){
+    difference(){
+    sphere(20,$fn=16);
+    cylinder(h=50, r=2,center=true, $fn=30);
+        rotate([90,90,90])
+        cylinder(h=70, r=2,center=true, $fn=30);
+        rotate([90,0,0])
+        cylinder(h=70, r=2,center=true, $fn=30);
+    }    
+}
+//PingAttachment();
 module PingAttachment(){
   difference(){
     union(){  
@@ -123,5 +149,6 @@ module BatteryPackHolder(){
        
     
 }
+//Meccano([70,50,4],4);
 //PingAttachment();
-BatteryPackHolder();
+//BatteryPackHolder();
